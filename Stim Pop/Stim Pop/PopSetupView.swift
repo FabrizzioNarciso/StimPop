@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PopSetupView: View {
     
-    @StateObject var index = Index()
     @State var BallSize: Double = 0.1
     @State var BallBounce: Double = 0
     @State var BallFriction: Double = 0
@@ -88,7 +87,7 @@ struct PopSetupView: View {
                 Spacer()
                 
                 NavigationLink() {
-                    GameView(BallSize: CGFloat(BallSize), BallBounce: CGFloat(BallBounce), BallFriction: CGFloat(BallFriction), index: index.index, mode:false )
+                    GameView(BallSize: CGFloat(BallSize), BallBounce: CGFloat(BallBounce), BallFriction: CGFloat(BallFriction), mode:false )
                 } label: {
                     Text("Play!")
                         .font(.largeTitle)
@@ -101,11 +100,6 @@ struct PopSetupView: View {
                 Spacer()
             }
         }
-        .background(
-            Image(Theme().theme[index.index].background)
-                .resizable()
-                .scaledToFill()
-                .ignoresSafeArea()
-        )
+        .background()
     }
 }

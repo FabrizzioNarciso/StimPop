@@ -10,9 +10,8 @@ import AVKit
 import SwiftUI
 
 
-class Ball: SKSpriteNode {
-    
-}
+class Ball: SKSpriteNode {}
+var ballsList = ["b1","b2","b3","b4","b5","b6"]
 
 class GameScene: SKScene {
     
@@ -58,7 +57,7 @@ class GameScene: SKScene {
     override func didMove(to view: SKView) {
         
         //Background
-        let board  = SKSpriteNode(imageNamed: Theme().theme[index].board)
+        let board  = SKSpriteNode()
         board.scale(to: size)
         board.position = CGPoint(x: frame.midX, y: frame.midY)
         board.zPosition = -1
@@ -86,14 +85,14 @@ class GameScene: SKScene {
         }
         
         //Ball size reference
-        let ball = SKSpriteNode(imageNamed: Theme().theme[index].balls[0])
+        let ball = SKSpriteNode(imageNamed: "b1")
         ball.xScale = CGFloat(BallSize)
         ball.yScale = CGFloat(BallSize)
         
         //Ball placement
         for i in stride(from: ball.frame.width/2, to: view.bounds.width - ball.frame.width/2, by: ball.frame.width) {
             for j in stride(from: 35, to: view.bounds.height - ball.frame.width/2, by: ball.frame.height) {
-                if let ballColor = Theme().theme[index].balls.randomElement() {
+                if let ballColor = ballsList.randomElement() {
                     let ball = Ball(imageNamed: ballColor)
                     ball.xScale = CGFloat(BallSize)
                     ball.yScale = CGFloat(BallSize)
@@ -171,7 +170,7 @@ class GameScene: SKScene {
         }
             //Pop effect
             for ball in matchedBall {
-                if let particles = SKEmitterNode(fileNamed: Theme().theme[index].fx) {
+                if let particles = SKEmitterNode(fileNamed: "POP") {
                     particles.position = ball.position
                     addChild(particles)
                     run(pop)

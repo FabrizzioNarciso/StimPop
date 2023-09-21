@@ -13,14 +13,12 @@ struct GameView: View {
     let BallSize: CGFloat
     let BallBounce: CGFloat
     let BallFriction: CGFloat
-    let index: Int
     let mode: Bool
     
-    init(BallSize: CGFloat, BallBounce: CGFloat, BallFriction: CGFloat, index: Int, mode: Bool) {
+    init(BallSize: CGFloat, BallBounce: CGFloat, BallFriction: CGFloat, mode: Bool) {
         self.BallSize = BallSize
         self.BallBounce = BallBounce
         self.BallFriction = BallFriction
-        self.index = index
         self.mode = mode
     }
     
@@ -40,7 +38,6 @@ struct GameView: View {
             scene.BallSize = BallSize
             scene.BallBounce = BallBounce
             scene.BallFriction = BallFriction
-            scene.index = index
             scene.game = mode
             
             return SpriteView(scene: scene)

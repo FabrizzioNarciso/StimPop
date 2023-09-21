@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct Menu: View {
-    @StateObject var index = Index()
     @State var info: Bool =  true
     
     var body: some View {
@@ -16,26 +15,11 @@ struct Menu: View {
         
         GeometryReader { geometry in
             VStack {
-//                HStack {
-//                    Spacer()
-//                    Button {
-//                        withAnimation {
-//                            info.toggle()
-//                        }
-//                    } label: {
-//                        Image(systemName: "info.circle")
-//                            .font(.title)
-//                            .padding()
-//
-//                    }
-//                    .padding(.top,64)
-//                    .padding(.horizontal)
-//                }
                 Spacer()
                 LazyVGrid(columns: [GridItem()], spacing: 8) {
                     
                     NavigationLink {
-                        GameView(BallSize: 0.06, BallBounce: 0, BallFriction: 0, index: index.index, mode: true)
+                        GameView(BallSize: 0.06, BallBounce: 0, BallFriction: 0, mode: true)
                     } label: {
                         if info == true {
                             Card(title: "Game Mode", description: "Match as many balls as possible to make points. Play against your highscore.",background: "gamecontroller")
@@ -63,19 +47,6 @@ struct Menu: View {
                         }
                     }
                     
-                    NavigationLink {
-                        ThemeControl()
-                    } label: {
-                        if info == true {
-                            Card(title: "Theme", description: "Select between the unlocked Themes to change the game`s apperance.", background: "photo.on.rectangle.angled")
-                                .frame(height: geometry.size.height*0.18)
-                                .transition(.slide)
-                        } else {
-                            Card(title: "Theme", background: "photo.on.rectangle.angled")
-                                .frame(height: geometry.size.height*0.18)
-                                .transition(.slide)
-                        }
-                    }
                     
                     NavigationLink {
                        Credits()
@@ -98,12 +69,7 @@ struct Menu: View {
             
         }
         .ignoresSafeArea()
-            .background(
-                Image(Theme().theme[index.index].background)
-                    .resizable()
-                    .scaledToFill()
-                    .ignoresSafeArea()
-            )
+            .background()
         
     }
     

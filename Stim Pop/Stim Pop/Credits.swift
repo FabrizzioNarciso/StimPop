@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct Credits: View {
-    @StateObject var index =  Index()
     @State var inicio: Bool = false
     
     var body: some View {
         GeometryReader { geometry in
             VStack {
                 Text ("Stim Pop")
-                    .foregroundColor(Theme().theme[index.index].color)
+                    //.foregroundColor(Theme().theme[index.index].color)
                     .font(.largeTitle)
                     .padding()
                 Text("Stim Pop was created as part of the 2023 Swift Student Challenge.")
@@ -55,19 +54,7 @@ struct Credits: View {
             .multilineTextAlignment(.center)
             .padding()
             .background(
-                ZStack {
-                    Image(Theme().theme[index.index].background)
-                        .resizable()
-                        .scaledToFill()
-                        .ignoresSafeArea()
-                    Image(Theme().theme[index.index].wall)
-                        .resizable()
-                        .scaledToFill()
-                        .ignoresSafeArea()
-                        .scaleEffect(1.1)
-                        .position(inicio ? CGPoint(x: geometry.size.width*0.5, y: geometry.size.height*0.5 + 250) : CGPoint(x: geometry.size.width*0.5, y: geometry.size.height*0.5-250))
-                        .animation(.linear(duration: 20).repeatForever(), value: inicio)
-                }
+               
             )
             .onAppear() {
                 inicio = true

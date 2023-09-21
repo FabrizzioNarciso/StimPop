@@ -11,15 +11,12 @@ import SwiftUI
 @main
 struct Stim_PopApp: App {
     
-    @StateObject var index = Index()
-    
     var body: some Scene {
         WindowGroup {
             NavigationStack {
-                Intro()
+                Menu()
             }
-            .preferredColorScheme(.dark)
-            .tint(Theme().theme[index.index].color)
+            //.preferredColorScheme(.dark)
             
         }
     }
