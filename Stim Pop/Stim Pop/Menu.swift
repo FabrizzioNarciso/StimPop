@@ -8,72 +8,37 @@
 import SwiftUI
 
 struct Menu: View {
-    @State var info: Bool =  true
     
     var body: some View {
-        
-        
-        GeometryReader { geometry in
-            VStack {
-                Spacer()
-                LazyVGrid(columns: [GridItem()], spacing: 8) {
-                    
-                    NavigationLink {
-                        GameView(BallSize: 0.06, BallBounce: 0, BallFriction: 0, mode: true)
-                    } label: {
-                        if info == true {
-                            Card(title: "Game Mode", description: "Match as many balls as possible to make points. Play against your highscore.",background: "gamecontroller")
-                                .transition(.slide)
-                                .frame(height: geometry.size.height*0.18)
-                        } else {
-                            Card(title: "Game Mode",background: "gamecontroller")
-                                .frame(height: geometry.size.height*0.18)
-                                .transition(.slide)
-                        }
-                        
-                    }
-                    
-                    NavigationLink {
-                        PopSetupView()
-                    } label: {
-                        if info == true {
-                            Card(title: "Chill Mode", description: "No points. Ajust the settings to mix it up.",background: "party.popper")
-                                .frame(height: geometry.size.height*0.18)
-                                .transition(.slide)
-                        } else {
-                            Card(title: "Chill Mode",background: "party.popper")
-                                .frame(height: geometry.size.height*0.18)
-                                .transition(.slide)
-                        }
-                    }
-                    
-                    
-                    NavigationLink {
-                       Credits()
-                    } label: {
-                        if info == true {
-                            Card(title: "About", description: "App Credits",background:"person.circle")
-                                .frame(height: geometry.size.height*0.18)
-                                .transition(.slide)
-                        } else {
-                            Card(title: "About",background:"person.circle")
-                                .frame(height: geometry.size.height*0.18)
-                                .transition(.slide)
-                        }
-                        
-                    }
-                }
-                .padding(.horizontal,8)
-                Spacer()
+        VStack {
+            VStack{
+                Image("logo")
+                    .resizable()
+                    .scaledToFit()
+                    .padding(64)
             }
-            
+            VStack {
+                Card(title: "Score Mode", description: "Match to beat your high score.", icon: "trophy")
+                    .padding(.bottom,-8)
+                Card(title: "Physics", description: "Play with the properties.", icon: "arrow.up.and.down.and.sparkles")
+                    .padding(.bottom,-8)
+                Card(title: "Wall Mode", description: "Infinite bubbles.", icon: "infinity")
+                    .padding(.bottom,-8)
+                Card(title: "About", description: "Game Credits.", icon: "info.circle",bottom: true)
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 10.0)
+                    .foregroundColor(Color("Card"))
+            )
+            .padding(16)
         }
-        .ignoresSafeArea()
-            .background()
+        .background(Color("Background"))
+        .ignoresSafeArea(.all)
         
     }
     
 }
+
 
 
 struct Menu_Previews: PreviewProvider {

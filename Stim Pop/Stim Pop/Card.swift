@@ -9,44 +9,47 @@ import SwiftUI
 
 struct Card: View {
     @State var title: String
-    @State var description: String = ""
-    @State var background: String = ""
+    @State var description: String
+    @State var icon: String
+    @State var bottom: Bool = false
     
     var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(Material.ultraThick.opacity(0.3))
-                .cornerRadius(10)
-            Rectangle()
-                .fill(Color.black.opacity(0.85))
-                .cornerRadius(10)
+        VStack {
             VStack {
-                HStack {
-                    Label(title, systemImage: background)
-                        .padding(.leading,8)
-                        .padding(.top,8)
-                        //.foregroundColor(.white)
-                        .font(.largeTitle)
+                HStack{
+                    VStack{
+                        HStack {
+                            Image(systemName: icon).foregroundColor(.accentColor).font(.title)
+                            Text(title).font(.title)
+                            Spacer()
+                        }
+                        .padding(.bottom, 2)
+                        HStack {
+                            Text(description).font(.caption).foregroundColor(.secondary)
+                            Spacer()
+                        }
+                    } .padding(.bottom,16)
                     Spacer()
+                    Image(systemName: "chevron.right").foregroundColor(.secondary)
+                        .padding(16)
                 }
-                
-                HStack {
-                    Text(description)
-                        .padding(.leading,8)
-                        .multilineTextAlignment(.leading)
-                        .foregroundColor(.gray)
-                    Spacer()
+                if bottom == false {
+                    Divider()
                 }
-                
-                Spacer()
             }
-            .padding(.horizontal, 8)
+            .padding(.leading, 16)
+            .padding(.top, 16)
+            
         }
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundColor(Color("Card"))
+            )
     }
 }
 
 struct Card_Previews: PreviewProvider {
     static var previews: some View {
-        Card(title: "", description: "")
+        Card(title: "", description: "", icon: "")
     }
 }

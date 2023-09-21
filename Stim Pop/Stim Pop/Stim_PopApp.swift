@@ -15,8 +15,9 @@ struct Stim_PopApp: App {
         WindowGroup {
             NavigationStack {
                 Menu()
+                
             }
-            //.preferredColorScheme(.dark)
+            .preferredColorScheme(.dark)
             
         }
     }
